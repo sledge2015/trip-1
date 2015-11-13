@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +62,7 @@ public class StartFragment extends Fragment {
     }
 
     private List<DestinationCard> m_destinations = new ArrayList<DestinationCard>();
-    private DestinationAdpater mAdapter;
+    private DestinationAdapter mAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,7 +85,7 @@ public class StartFragment extends Fragment {
 
         mRecyclerView.setHasFixedSize(true);
         // 初始化自定义的适配器
-        mAdapter = new DestinationAdpater(getContext(), m_destinations);
+        mAdapter = new DestinationAdapter(getContext(), m_destinations);
         // 为mRecyclerView设置适配器
         mRecyclerView.setAdapter(mAdapter);
 

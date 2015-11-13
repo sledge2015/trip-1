@@ -1,11 +1,11 @@
 package com.easylife.letsgo;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.design.widget.TabLayout;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements StartFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements StartFragment.OnFragmentInteractionListener
+{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -47,23 +48,24 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mPageFragment.add(StartFragment.newInstance(0));
-        mPageFragment.add(ItineraryFragment.newInstance(1));
+        mPageFragment.add(StartFragment.newInstance(1));
         mPageFragment.add(ItineraryFragment.newInstance(2));
-        mPageFragment.add(ItineraryFragment.newInstance(3));
+        mPageFragment.add(MessageFragment.newInstance(3));
+        mPageFragment.add(ContactFragment.newInstance(4));
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(mPageFragment, getSupportFragmentManager());
-
-
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        SlidingTabLayout mTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+        mTabLayout.setViewPager(mViewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -93,9 +95,10 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
 
         switch (id)
         {
-            case R.id.action_search:
-                Toast.makeText(this, "Search Click", Toast.LENGTH_SHORT).show();
+            case android.R.id.home:
                 break;
+            case R.id.action_search:
+                return super.onOptionsItemSelected(item);
             case R.id.action_settings:
                 Toast.makeText(this, "Settings Click", Toast.LENGTH_SHORT).show();
                 break;
@@ -144,13 +147,13 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return getString(R.string.fragment_title_start);
                 case 1:
-                    return "SECTION 2";
+                    return getString(R.string.fragment_title_itnerary);
                 case 2:
-                    return "SECTION 3";
+                    return getString(R.string.fragment_title_message);
                 case 3:
-                    return "SECTION 4";
+                    return getString(R.string.fragment_title_contact);
             }
             return null;
         }

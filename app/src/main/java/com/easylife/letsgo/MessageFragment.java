@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ItineraryFragment#newInstance} factory method to
+ * Use the {@link MessageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ItineraryFragment extends Fragment {
+public class MessageFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -40,7 +40,7 @@ public class ItineraryFragment extends Fragment {
         return fragment;
     }
 
-    public ItineraryFragment() {
+    public MessageFragment() {
         // Required empty public constructor
     }
 
@@ -57,7 +57,7 @@ public class ItineraryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_itinerary, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_message, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
         textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
         return rootView;
