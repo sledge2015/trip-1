@@ -68,16 +68,17 @@ public class StartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_start, container, false);
-        RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.destination_list);
 
         m_destinations.clear();
         m_destinations.add(new DestinationCard("江南", "p1"));
         m_destinations.add(new DestinationCard("水乡", "p2"));
         m_destinations.add(new DestinationCard("西藏", "p3"));
+        m_destinations.add(new DestinationCard("海滩", "p4"));
+        m_destinations.add(new DestinationCard("青海", "p5"));
 
         ///----
         // 拿到RecyclerView
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.destination_list);
+        RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.destination_list);
         // 设置LinearLayoutManager
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         // 设置ItemAnimator

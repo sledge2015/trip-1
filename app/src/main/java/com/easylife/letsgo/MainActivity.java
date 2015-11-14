@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 
@@ -22,7 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements StartFragment.OnFragmentInteractionListener
+public class MainActivity extends AppCompatActivity
+        implements StartFragment.OnFragmentInteractionListener,
+        ViewPager.OnPageChangeListener,
+        RadioGroup.OnCheckedChangeListener
 {
 
     /**
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
+    private RadioGroup mRadioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +69,10 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.addOnPageChangeListener(this);
 
-        SlidingTabLayout mTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        mTabLayout.setViewPager(mViewPager);
+       // SlidingTabLayout mTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+       // mTabLayout.setViewPager(mViewPager);
 
         /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -77,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
             }
         });
         */
+
+        mRadioGroup = (RadioGroup)findViewById(R.id.tab_menu);
+        mRadioGroup.setOnCheckedChangeListener(this);
 
     }
 
@@ -117,6 +127,55 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        switch (position)
+        {
+            case 0:
+                mRadioGroup.check(R.id.tab_rb_start);
+                break;
+            case 1:
+                mRadioGroup.check(R.id.tab_rb_itinerary);
+                break;
+            case 2:
+                mRadioGroup.check(R.id.tab_rb_message);
+                break;
+            case 3:
+                mRadioGroup.check(R.id.tab_rb_contact);
+                break;
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+        switch (checkedId)
+        {
+            case R.id.tab_rb_start:
+                mViewPager.setCurrentItem(0);
+                break;
+            case R.id.tab_rb_itinerary:
+                mViewPager.setCurrentItem(1);
+                break;
+            case R.id.tab_rb_message:
+                mViewPager.setCurrentItem(2);
+                break;
+            case R.id.tab_rb_contact:
+                mViewPager.setCurrentItem(3);
+                break;
+        }
     }
 
 
