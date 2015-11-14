@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setLogo(R.mipmap.ic_launcher);
+        //toolbar.setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Create the adapter that will return a fragment for each of the three
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
         SlidingTabLayout mTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
         mTabLayout.setViewPager(mViewPager);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements StartFragment.OnF
                         .setAction("Action", null).show();
             }
         });
+        */
 
     }
 
