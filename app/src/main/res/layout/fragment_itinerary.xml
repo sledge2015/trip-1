@@ -3,8 +3,30 @@
     android:layout_height="match_parent"
     tools:context="com.easylife.letsgo.fragement.ItineraryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:id="@+id/section_label" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/itinerary_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_main"
+        android:layout_margin="0dp"
+        android:padding="0dp" />
+
+    <RelativeLayout
+        android:id="@+id/android:empty"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10.0dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130px"
+            android:text="@string/no_itinerary"
+            android:background="@drawable/panel_bg"
+            android:textSize="25px" />
+
+    </RelativeLayout>
+
+
 
 </FrameLayout>

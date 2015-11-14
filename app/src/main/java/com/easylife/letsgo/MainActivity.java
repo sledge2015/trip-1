@@ -3,6 +3,7 @@ package com.easylife.letsgo;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.TabLayout;
@@ -26,8 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements StartFragment.OnFragmentInteractionListener,
         ViewPager.OnPageChangeListener,
-        RadioGroup.OnCheckedChangeListener
-{
+        RadioGroup.OnCheckedChangeListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private List<Fragment> mPageFragment = new ArrayList<Fragment>();
+    private List<Fragment> mPageFragment = new ArrayList<>();
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -55,7 +55,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //toolbar.setLogo(R.mipmap.ic_launcher);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -71,25 +75,12 @@ public class MainActivity extends AppCompatActivity
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.addOnPageChangeListener(this);
 
-       // SlidingTabLayout mTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-       // mTabLayout.setViewPager(mViewPager);
+        // SlidingTabLayout mTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+        // mTabLayout.setViewPager(mViewPager);
 
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        */
-
-        mRadioGroup = (RadioGroup)findViewById(R.id.tab_menu);
+        mRadioGroup = (RadioGroup) findViewById(R.id.tab_menu);
         mRadioGroup.setOnCheckedChangeListener(this);
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,8 +96,7 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        switch (id)
-        {
+        switch (id) {
             case android.R.id.home:
                 break;
             case R.id.action_search:
@@ -136,8 +126,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onPageSelected(int position) {
-        switch (position)
-        {
+        switch (position) {
             case 0:
                 mRadioGroup.check(R.id.tab_rb_start);
                 break;
@@ -161,8 +150,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-        switch (checkedId)
-        {
+        switch (checkedId) {
             case R.id.tab_rb_start:
                 mViewPager.setCurrentItem(0);
                 break;
@@ -191,6 +179,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         private List<Fragment> mFragments;
+
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.

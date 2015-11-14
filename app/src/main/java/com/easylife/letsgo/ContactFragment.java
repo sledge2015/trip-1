@@ -30,8 +30,8 @@ public class ContactFragment extends Fragment {
      * @return A new instance of fragment ItineraryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ItineraryFragment newInstance(int section_number) {
-        ItineraryFragment fragment = new ItineraryFragment();
+    public static ContactFragment newInstance(int section_number) {
+        ContactFragment fragment = new ContactFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, section_number);
 
@@ -57,7 +57,7 @@ public class ContactFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_contact, container, false);
-        TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+        TextView textView = (TextView) rootView.findViewById(R.id.contact_label);
         textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
         return rootView;
     }
